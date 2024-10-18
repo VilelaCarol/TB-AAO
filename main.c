@@ -4,66 +4,74 @@
 #include "sort_algorithms.h"
 
 //função para gerar vetores de teste
-void generateArray(int arr[], int n) {
+void generateArray(int vetor_pequeno[], int n) {
     int i;
     for (i = 0; i < n; i++) {
-        arr[i] = rand() % 1000;
+        vetor_pequeno[i] = rand() % 1000;
     }
 }
 
 int main() {
-    int n = 10000;
-    int arr[n];
+    int small_size = 100;
+    int vetor_pequeno[small_size];
+    //variaveis para contagem de comparações e trocas
+    int comparisons = 0, swaps = 0;
     clock_t start, end;
     double cpu_time_used;
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    bubbleSort(arr, n);
+    bubbleSort(vetor_pequeno, small_size, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do bubbleSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    selectionSort(arr, n);
+    selectionSort(vetor_pequeno, small_size, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do selectionSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    insertionSort(arr, n);
+    insertionSort(vetor_pequeno, small_size, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do insertionSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    mergeSort(arr, 0, n-1);
+    mergeSort(vetor_pequeno, 0, small_size-1, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do mergeSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    heapSort(arr, n);
+    heapSort(vetor_pequeno, small_size, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do heapSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
-    generateArray(arr, n);
+    generateArray(vetor_pequeno, small_size);
 
     start = clock();
-    quickSort(arr, 0, n-1);
+    quickSort(vetor_pequeno, 0, small_size-1, &comparisons, &swaps);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Tempo de execução do quickSort: %f\n", cpu_time_used);
+    printf("Comparações: %d, Trocas: %d\n", comparisons, swaps);
 
     return 0;
 }
