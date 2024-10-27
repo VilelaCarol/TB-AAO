@@ -7,7 +7,6 @@ void bubbleSort(int arr[], int n, int *comparisons, int *swaps) {
         for (j = 0; j < n-i-1; j++) {
             (*comparisons)++;
             if (arr[j] > arr[j+1]) {
-                // Troca arr[j] e arr[j+1]
                 temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
@@ -28,7 +27,6 @@ void selectionSort(int arr[], int n, int *comparisons, int *swaps) {
                 minIndex = j;
             }
         }
-        // Troca arr[i] e arr[minIndex]
         temp = arr[i];
         arr[i] = arr[minIndex];
         arr[minIndex] = temp;
@@ -44,13 +42,12 @@ void insertionSort(int arr[], int n, int *comparisons, int *swaps) {
         j = i - 1;
 
         while (j >= 0 && arr[j] > key) {
-            (*comparisons)++;  // Contagem dentro do loop
+            (*comparisons)++;  
             arr[j+1] = arr[j];
             j = j - 1;
             (*swaps)++;
         }
 
-        // Incrementa comparação para o caso em que o loop `while` não executou
         if (j >= 0) {
             (*comparisons)++;
         }
@@ -99,14 +96,12 @@ void merge(int arr[], int l, int m, int r, int *comparisons, int *swaps) {
         k++;
     }
 
-    // Copiar os elementos restantes de L[]
     while (i < n1) {
         arr[k] = L[i];
         i++;
         k++;
     }
 
-    // Copiar os elementos restantes de R[]
     while (j < n2) {
         arr[k] = R[j];
         j++;
@@ -121,7 +116,6 @@ void heapSort(int arr[], int n, int *comparisons, int *swaps) {
         heapify(arr, n, i, comparisons, swaps);
     }
     for (i = n - 1; i >= 0; i--) {
-        // Troca arr[0] e arr[i]
         int temp = arr[0];
         arr[0] = arr[i];
         arr[i] = temp;
@@ -175,10 +169,9 @@ int partition(int arr[], int low, int high, int *comparisons, int *swaps) {
     int temp;
 
     for (int j = low; j <= high - 1; j++) {
-        (*comparisons)++;  // Comparação com o pivô
+        (*comparisons)++; 
         if (arr[j] < pivot) {
             i++;
-            // Troca arr[i] e arr[j]
             temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
@@ -186,7 +179,6 @@ int partition(int arr[], int low, int high, int *comparisons, int *swaps) {
         }
     }
 
-    // Troca arr[i+1] e arr[high] (pivô)
     temp = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;

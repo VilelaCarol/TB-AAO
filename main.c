@@ -22,17 +22,17 @@ void generateArray(int vetor[], int n) {
 // Função para gerar vetor em ordem decrescente (Base 2)
 void generateReverseArray(int vetor[], int n) {
     for (int i = 0; i < n; i++) {
-        vetor[i] = n - i;  // Vetor em ordem decrescente
+        vetor[i] = n - i;  
     }
 }
 
 // Função para gerar vetor com 50% ordenado e 50% aleatório (melhor caso)
 void generateHalfOrderedArray(int vetor[], int n) {
     for (int i = 0; i < n / 2; i++) {
-        vetor[i] = i;  // Primeiros 50% ordenados
+        vetor[i] = i;  
     }
     for (int i = n / 2; i < n; i++) {
-        vetor[i] = rand() % 10000;  // Últimos 50% aleatórios
+        vetor[i] = rand() % 10000; 
     }
 }
 
@@ -42,13 +42,11 @@ void testSortAlgorithm(void (*sortFunction)(int[], int, int*, int*), const char 
     int comparisons = 0, swaps = 0;
     double start, end, ms_time_used;
 
-    // Executa a função de ordenação
     start = get_time_in_ms();
     sortFunction(vetor, n, &comparisons, &swaps);
     end = get_time_in_ms();
     ms_time_used = end - start;
 
-    // Exibe os resultados
     printf("%s - Tamanho: %d, Tempo: %.3f ms, Comparações: %d, Trocas: %d\n", 
            algorithmName, n, ms_time_used, comparisons, swaps);
 }
@@ -58,13 +56,11 @@ void testSortAlgorithmWithIndices(void (*sortFunction)(int[], int, int, int*, in
     int comparisons = 0, swaps = 0;
     double start, end, ms_time_used;
 
-    // Executa a função de ordenação
     start = get_time_in_ms();
     sortFunction(vetor, l, r, &comparisons, &swaps);
     end = get_time_in_ms();
     ms_time_used = end - start;
 
-    // Exibe os resultados
     printf("%s - Intervalo: [%d, %d], Tempo: %.3f ms, Comparações: %d, Trocas: %d\n", 
            algorithmName, l, r, ms_time_used, comparisons, swaps);
 }
@@ -79,7 +75,7 @@ int main() {
     int vetor_medio[medium_size];
     int vetor_grande[large_size];
 
-   // ** Base 1: Vetor Pequeno (100 elementos) com números gerados aleatoriamente **
+   //  Base 1: Vetor Pequeno (100 elementos) com números gerados aleatoriamente
     generateArray(vetor_pequeno, small_size);
     testSortAlgorithm(bubbleSort, "Bubble Sort - Base 1 (100 elementos)", vetor_pequeno, small_size);
     generateArray(vetor_pequeno, small_size);  
@@ -93,7 +89,7 @@ int main() {
     generateArray(vetor_pequeno, small_size);
     testSortAlgorithmWithIndices(quickSort, "Quick Sort - Base 1 (100 elementos)", vetor_pequeno, 0, small_size - 1);
 
-    // ** Base 2: Vetor Médio (1000 elementos) em ordem decrescente **
+    // Base 2: Vetor Médio (1000 elementos) em ordem decrescente
     generateReverseArray(vetor_medio, medium_size);
     testSortAlgorithm(bubbleSort, "Bubble Sort - Base 2 (1000 elementos)", vetor_medio, medium_size);
     generateReverseArray(vetor_medio, medium_size);
@@ -107,7 +103,7 @@ int main() {
     generateReverseArray(vetor_medio, medium_size);
     testSortAlgorithmWithIndices(quickSort, "Quick Sort - Base 2 (1000 elementos)", vetor_medio, 0, medium_size - 1);
 
-    // ** Base 3: Vetor Grande (10.000 elementos) com 50% dos elementos já ordenados **
+    //Base 3: Vetor Grande (10.000 elementos) com 50% dos elementos já ordenados
     generateHalfOrderedArray(vetor_grande, large_size);
     testSortAlgorithm(bubbleSort, "Bubble Sort - Base 3 (10.000 elementos)", vetor_grande, large_size);
     generateHalfOrderedArray(vetor_grande, large_size);
